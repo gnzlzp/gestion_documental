@@ -7,7 +7,7 @@ function AddDocument({ open, setOpen, rows, setRows }) {
 
 	const [doc, setDoc] = useState(
 		{
-			id: 1,
+			id: '',
 			title: '',
 			doc: '',
 			area:'',
@@ -16,10 +16,8 @@ function AddDocument({ open, setOpen, rows, setRows }) {
 	)
 
 	const handleAddDocument = () => {
-		setRows([...rows,
-			doc]
-		)
-		setOpen(false)
+		setRows([...rows, doc])
+		return setOpen(false)
 	}
 
 	const handleSetDoc = (event) => {

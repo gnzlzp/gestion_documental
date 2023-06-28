@@ -13,7 +13,7 @@ function DrawerPanel({ children, titleBar, titleDrawer , listAdmin, listAgent })
 	const [currentList , setCurrentList] = useState([])
 
 	const currentPathList = ()=>{
-		if (pathname === '/admin') setCurrentList(listAdmin) 
+		if (pathname === '/admin') setCurrentList([...listAdmin, ...listAgent]) 
 		if (pathname === '/agent') setCurrentList(listAgent) 
 
 	}

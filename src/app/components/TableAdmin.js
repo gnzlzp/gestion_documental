@@ -50,7 +50,7 @@ function Table({cols}) {
 		{ field: 'administracion', headerName: 'Administracion', width: 150, type: 'boolean', editable: true },
 		{ field: 'declaraciones', headerName: 'Declaraciones', width: 150, type: 'boolean', editable: true },
 		{ field: 'proveedores', headerName: 'Proveedores', width: 150, type: 'boolean', editable: true },
-		{ field: 'registro', headerName: 'Registro', width: 150, type: 'boolean', editable: true },
+		{ field: 'registros', headerName: 'Registro', width: 150, type: 'boolean', editable: true },
 		{ field: 'seguimiento', headerName: 'Seguimiento', width: 150, type: 'boolean', editable: true },
 		{
 			field: 'administrador', headerName: 'Acción', width: 150, type: 'actions',
@@ -59,6 +59,7 @@ function Table({cols}) {
 					key={1}
 					icon={<DeleteIcon />}
 					label="Delete"
+					onClick={handleDelete}
 				/>,
 				<GridActionsCellItem
 					key={2}

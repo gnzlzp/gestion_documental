@@ -14,10 +14,10 @@ function Table({cols}) {
 
 	const pathname = usePathname()
 
-	const [dataUser, setDataUser] = useState([])
+	const [dataDoc, setDataDoc] = useState([])
 
 	async function getUsers() {
-		const res = await fetch('https://jsonplaceholder.typicode.com/users')
+		const res = await fetch('https://jsonplaceholder.typicode.com/comments')
 		// The return value is *not* serialized
 		// You can return Date, Map, Set, etc.
 
@@ -28,14 +28,15 @@ function Table({cols}) {
 		}
 		const data = await res.json()
 
-		const mappedData = await data.map((user) => ({
-			id: user.id,
-			user_name: user.username,
-			name: user.name,
-			email: user.email,
+		const mappedData = await data.map((doc,index) => ({
+			id: index,
+			title: '',
+			doc: doc.email,
+			name: doc.name,
+			writing: doc.body,
 		}));
 
-		setDataUser(mappedData);
+		setDataDoc(mappedData);
 		setRows(mappedData);
 
 	}
@@ -70,7 +71,7 @@ function Table({cols}) {
 
 	useEffect(() => {
 		getUsers()
-		setRows([...dataUser])
+		setRows([...dataDoc])
 	}, [])
 
 	return (
