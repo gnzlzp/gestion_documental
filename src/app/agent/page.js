@@ -1,5 +1,4 @@
-import Table from "../components/Table"
-import listAgent from '../../assets/listAgent.js'
+import Table from "../components/TableAgent"
 
 function Agent() {
 	return (

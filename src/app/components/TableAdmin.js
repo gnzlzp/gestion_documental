@@ -10,7 +10,7 @@ import { usePathname } from 'next/navigation'
 import AddUser from './AddUser';
 import AddDocument from './AddDocument';
 
-function Table() {
+function Table({cols}) {
 
 	const pathname = usePathname()
 
@@ -101,7 +101,7 @@ function Table() {
 						},
 					},
 				}}
-				pageSizeOptions={[6]}
+				pageSizeOptions={[15]}
 				checkboxSelection
 				disableRowSelectionOnClick
 			>

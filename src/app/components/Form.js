@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, createTheme } from "@mui/material";
 import { useRouter } from 'next/navigation'
 import { useState } from "react";
 
@@ -24,9 +24,11 @@ function Form() {
 		const userPass = process.env.NEXT_PUBLIC_DEFAULT_USER_PASS
 
     if (form.user === admin && form.password === adminPass) {
+      localStorage.setItem('accessAdmin', admin)
       alert("Admin autorizado");
       router.push("/admin");
     } else if (form.user === user && form.password === userPass) {
+      localStorage.setItem('accessUser', user)
       alert("Usuario autorizado");
       router.push("/agent");
     } else {
@@ -34,19 +36,23 @@ function Form() {
     }
   };
 
+
   return (
     <>
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "25ch" }
+          display:"flex",
+          flexDirection:"column",
+          alignContent:"center",
+          "& > :not(style)": { m: 1, width: "100%" }
         }}
         noValidate
         autoComplete="off"
       >
         <TextField id="outlined-basic" name="user" label="Usuario" variant="outlined" onChange={handleLogin} />
         <TextField id="outlined-basic" name="password" label="Contraseña" variant="outlined" onChange={handleLogin} />
-        <Button onClick={validate}>Ingresar</Button>
+        <Button onClick={validate} fullWidth>Ingresar</Button>
       </Box>
     </>
   );

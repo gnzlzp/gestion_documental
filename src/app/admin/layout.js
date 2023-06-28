@@ -1,10 +1,25 @@
+'use client'
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import DrawerPanel from "../components/Drawer"
 import listAdmin from "@/assets/listAdmin"
 
 export default function AdminPanel({ children }) {
+	const router = useRouter();
+	const [hasAccess, setHasAccess] = useState(false)
+
+	useEffect(() => {
+		const admin = localStorage.getItem("accessAdmin")
+		if (!admin) return router.push('/')
+		setHasAccess(true)
+	}, [])
+
+
 	return (
-		<DrawerPanel titleBar={'Permiso de usuarios'} titleDrawer={'Administrador'} listAdmin={listAdmin}>
-			{children}
-		</DrawerPanel>
+		<>
+			{!hasAccess ? <></> : <DrawerPanel titleBar={'Permiso de usuarios'} titleDrawer={'Administrador'} listAdmin={listAdmin}>
+				{children}
+			</DrawerPanel>}
+		</>
 	)
 }

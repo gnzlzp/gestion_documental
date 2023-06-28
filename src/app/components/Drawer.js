@@ -23,6 +23,9 @@ useEffect(()=>{
 	console.log(currentList,listAdmin);
 },[])
 
+const handleLog = ()=>{
+	localStorage.clear();
+}
 	return (
 		<>
 			<Box sx={{ display: 'flex' }}>
@@ -53,21 +56,19 @@ useEffect(()=>{
 					<Box sx={{ mx: "auto" , mt:2 , fontSize:"1.3rem" , fontWeight:"bold"}} >
 						{titleDrawer}
 					</Box>
-					<Button href={'/'} startIcon={<LogoutIcon/>}>
+					<Button href={'/'} startIcon={<LogoutIcon/>} onClick={handleLog}>
 						Log out
 					</Button>
 					<Divider sx={{my:2}} />
 					<List>
 						{currentList?.map((text, index) => (
 							<ListItem key={text} disablePadding>
-								{/* <Link href={`/panel/${text}`}> */}
 								<ListItemButton>
 									<ListItemIcon>
 										{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
 									</ListItemIcon>
 									<ListItemText primary={text} />
 								</ListItemButton>
-								{/* </Link> */}
 							</ListItem>
 						))}
 					</List>

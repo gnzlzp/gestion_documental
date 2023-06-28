@@ -5,27 +5,26 @@ import { useEffect, useState } from "react"
 
 function AddDocument({ open, setOpen, rows, setRows }) {
 
-	const [user, setUser] = useState(
+	const [doc, setDoc] = useState(
 		{
 			id: 1,
-			user_name: 'Willi',
-			name: 'Willinton Otalvaro',
-			email: 'willi.admin@notaria.com'
+			title: '',
+			doc: '',
+			area:'',
+			writing:''
 		}
 	)
 
 	const handleAddDocument = () => {
 		setRows([...rows,
-			user]
+			doc]
 		)
 		setOpen(false)
 	}
 
-	const handleSetUser = (event) => {
-		setUser({
-			...user,
-			// id: Math.ceil(Math.random() * 10),
-			user_name: user.name,
+	const handleSetDoc = (event) => {
+		setDoc({
+			...doc,
 			[event.target.name]: event.target.value
 		}
 		)
@@ -39,10 +38,10 @@ function AddDocument({ open, setOpen, rows, setRows }) {
 						Complete los siguientes campos*
 					</DialogContentText>
 					<Box sx={{display:'flex', flexDirection:'column' , justifyContent:'space-around'  }}>
-					<TextField type="text" name="title" label={'Título'} onChange={handleSetUser} autoComplete="off"/>
-					<TextField type="text" name="doc" label={'Documento'} onChange={handleSetUser} autoComplete="off"/>
-					<TextField type="text" name="area" label={'Area'} onChange={handleSetUser} autoComplete="off"/>
-					<TextField name="writing" label={'Escritura'} onChange={handleSetUser} multiline minRows={6} fullWidth autoComplete="off"/>
+					<TextField type="text" name="title" label={'Título'} onChange={handleSetDoc} autoComplete="off"/>
+					<TextField type="text" name="doc" label={'Documento'} onChange={handleSetDoc} autoComplete="off"/>
+					<TextField type="text" name="area" label={'Area'} onChange={handleSetDoc} autoComplete="off"/>
+					<TextField name="writing" label={'Escritura'} onChange={handleSetDoc} multiline minRows={6} fullWidth autoComplete="off"/>
 					</Box>
 				</DialogContent>
 				<DialogActions>
