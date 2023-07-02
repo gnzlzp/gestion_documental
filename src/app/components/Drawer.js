@@ -20,7 +20,6 @@ function DrawerPanel({ children, titleBar, titleDrawer , listAdmin, listAgent })
 
 useEffect(()=>{
 	currentPathList()
-	console.log(currentList,listAdmin);
 },[])
 
 const handleLog = ()=>{

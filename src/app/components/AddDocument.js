@@ -7,11 +7,11 @@ function AddDocument({ open, setOpen, rows, setRows }) {
 
 	const [doc, setDoc] = useState(
 		{
-			id: '',
+			id: Math.random(1 * 10),
 			title: '',
 			doc: '',
-			area:'',
-			writing:''
+			area: '',
+			writing: ''
 		}
 	)
 
@@ -29,17 +29,17 @@ function AddDocument({ open, setOpen, rows, setRows }) {
 	}
 	return (
 		<>
-			<Dialog open={open}>
+			<Dialog open={open} >
 				<DialogTitle>Nuevo documento</DialogTitle>
 				<DialogContent>
-					<DialogContentText>
+					<DialogContentText mb={2}>
 						Complete los siguientes campos*
 					</DialogContentText>
-					<Box sx={{display:'flex', flexDirection:'column' , justifyContent:'space-around'  }}>
-					<TextField type="text" name="title" label={'Título'} onChange={handleSetDoc} autoComplete="off"/>
-					<TextField type="text" name="doc" label={'Documento'} onChange={handleSetDoc} autoComplete="off"/>
-					<TextField type="text" name="area" label={'Area'} onChange={handleSetDoc} autoComplete="off"/>
-					<TextField name="writing" label={'Escritura'} onChange={handleSetDoc} multiline minRows={6} fullWidth autoComplete="off"/>
+					<Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', gap: 2, width: '450px' }}>
+						<TextField type="text" name="title" label={'Título'} onChange={handleSetDoc} autoComplete="off" />
+						<TextField type="text" name="doc" label={'Documento'} onChange={handleSetDoc} autoComplete="off" />
+						<TextField type="text" name="area" label={'Area'} onChange={handleSetDoc} autoComplete="off" />
+						<TextField name="writing" label={'Escritura'} onChange={handleSetDoc} multiline minRows={6} fullWidth autoComplete="off" />
 					</Box>
 				</DialogContent>
 				<DialogActions>

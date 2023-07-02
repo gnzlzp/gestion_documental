@@ -9,9 +9,17 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation'
 import AddUser from './AddUser';
 import AddDocument from './AddDocument';
+import EditIcon from '@mui/icons-material/Edit';
+import FileOpenIcon from '@mui/icons-material/FileOpen';
 
-function Table({cols}) {
 
+function Table() {
+	const [selectedItemId, setSelectedItemId] = useState(null);
+
+	
+	const handleDelete = (id)=>{
+		setSelectedItemId(id);
+	}
 	const pathname = usePathname()
 
 	const [dataUser, setDataUser] = useState([])
@@ -58,13 +66,20 @@ function Table({cols}) {
 				<GridActionsCellItem
 					key={1}
 					icon={<DeleteIcon />}
-					label="Delete"
-					onClick={handleDelete}
+					label="Borrar Usuario"
+					onClick={() => handleDelete(params.row.id)}
+					showInMenu
 				/>,
 				<GridActionsCellItem
 					key={2}
-					icon={<SecurityIcon />}
-					label="Toggle Admin"
+					icon={<EditIcon />}
+					label="Editar Usuario"
+					showInMenu
+				/>,
+				<GridActionsCellItem
+					key={3}
+					icon={<FileOpenIcon />}
+					label="Ver Documentos"
 					showInMenu
 				/>,
 			]
@@ -77,6 +92,16 @@ function Table({cols}) {
 		getUsers()
 		setRows([...dataUser])
 	}, [])
+
+	useEffect(() => {
+		if (selectedItemId) {
+			// Filtra los elementos de la fila para eliminar el seleccionado
+			const updatedRows = rows.filter((row) => row.id !== selectedItemId);
+			setRows(updatedRows);
+			setSelectedItemId(null); // Reinicia el estado selectedItemId
+		}
+	}, [selectedItemId, rows]);
+	
 
 	return (
 		<Box sx={{ mt: 10 }}>
